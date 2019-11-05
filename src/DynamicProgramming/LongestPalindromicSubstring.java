@@ -28,10 +28,14 @@ public class LongestPalindromicSubstring {
 		boolean[][] dp = new boolean[n][n];
 		
 		for(int i = n - 1; i >= 0; i--) {
-			for(int j = i; i < 0; j++) {
-//				Check whether substring between(i, j) is palindrome
-				dp[i][j] = (s.charAt(i) == s.charAt(j));
-				if(dp[i][j] && (j-1+1>maxLen)) {
+			for(int j = i; i < n; j++) {
+//				Corner case: i=j; should  return true;
+//				Check whether substring between(i, j) is palindrome, and the least length of palindrome is 2 
+				if(s.charAt(i) == s.charAt(j)) {
+					dp[i][j] = (j-i < 3) || dp[i+1][i-1];
+				}
+//				determine whether should update the maxLen
+				if(dp[i][j] && (j-i+1>maxLen)) {
 					palindromeStartIndex = i;
 					maxLen = j-i+1;
 				}

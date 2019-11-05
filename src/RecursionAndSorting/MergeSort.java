@@ -3,7 +3,9 @@
  */
 package RecursionAndSorting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
@@ -58,6 +60,26 @@ public class MergeSort {
 		}
 //		if there are some elements at right side, we do not need to copy them, 
 //		because they are already in their position
+	}
+//	MergeSort with returnning new AarrayList each level
+	public ArrayList<Integer> mergeSort(ArrayList<Integer> array){
+		if(array == null) {
+			return array;
+		}
+		return mergeSort(array,0, array.size()-1);
+	}
+	private ArrayList<Integer> mergeSort(ArrayList<Integer> array, int left, int right){
+		ArrayList<Integer> result = new ArrayList<Integer>();
+//		base case:
+		if(left > right) return result;
+		if(left == right) {
+			result.add(array.get(left));
+			return result;
+		}
+		int mid = left + (right - left)/2;
+		List<Integer> reLeft = mergeSort(array, left, mid);
+		List<Integer> reRight = mergeSort(array, mid+1, right);
+		
 	}
 	
 	public static void main(String[] args) {
