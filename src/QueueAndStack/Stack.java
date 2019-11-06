@@ -42,5 +42,6 @@ public class Stack {
 		}
 		ListNode node = new ListNode(ele);
 		node.next = head;
+		head = node;
 	}
 }

@@ -79,7 +79,7 @@ public class MergeSort {
 		int mid = left + (right - left)/2;
 		List<Integer> reLeft = mergeSort(array, left, mid);
 		List<Integer> reRight = mergeSort(array, mid+1, right);
-		
+		return result;
 	}
 	
 	public static void main(String[] args) {
