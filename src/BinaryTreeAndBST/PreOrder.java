@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2019Äê10ÔÂ10ÈÕ ÉÏÎç10:57:44
+* @version Create Timeï¿½ï¿½2019ï¿½ï¿½10ï¿½ï¿½10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:57:44
 * Description:
 * 	Implement an iterative, pre-order traversal of a given bianry tree, return the list
 * 	of keys of each node in the tree as it pre-order traversed
@@ -57,4 +57,11 @@ public class PreOrder {
 		return preOrder;
 	}
 	
+	/*
+	 * the key insight
+	 * The root is the top of the stack, Once the root is traversed, we can print it directly and 
+	 * we do not need to store it in the stack any more
+	 * 1. We always print root first, the root can be eliminated from stack
+	 * 2. We traverse left sub first so right sub should be retained in the stack before the left sub is done
+	 */
 }
