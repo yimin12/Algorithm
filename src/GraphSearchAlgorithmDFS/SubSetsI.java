@@ -69,4 +69,22 @@ public class SubSetsI {
 			sb.deleteCharAt(sb.length()-1);
 		}
 	}
+	// method3: pure recursion solution
+	public List<String> subSetsIII(String set){
+		List<String> res = new ArrayList<>();
+		if(set == null) return res;
+		helperPure(set, 0, res);
+		return res;
+	}
+	private void helperPure(String set, int index, List<String> res) {
+		if(index==set.length()) {
+			res.add("");
+			return;
+		}
+		helperPure(set, index+1, res);
+		int size = res.size();
+		for(int i = 0; i < size; i++) {
+			res.add(res.get(i) + set.charAt(index));
+		}
+	}
 }

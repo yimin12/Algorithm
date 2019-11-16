@@ -1,5 +1,6 @@
 package Heap_GraphSearchAlgorithm;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
@@ -102,6 +103,7 @@ public class MinHeap {
 			// expand the array like what arraylist do
 			int[] newArray = new int[size + size >> 2];
 			// copy each element from array to new array like arrayList do
+			// newArray=Arrays.copyOf(array, size);
 			copy(array, newArray);
 			array = newArray;
 		}

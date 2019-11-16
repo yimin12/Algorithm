@@ -5,7 +5,9 @@ package GraphSearchAlgorithmDFS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
@@ -85,6 +87,54 @@ public class PermutationsI {
 				helperWithOrder(array, used, cur, result);
 				used[i] = false;
 				cur.deleteCharAt(cur.length() - 1);
+			}
+		}
+	}
+	// method3:without using swap
+	public List<String> permutations(String set){
+		List<String> res = new ArrayList<String>();
+		if(set == null) {
+			return res;
+		}
+		StringBuilder sb = new StringBuilder();
+		helperNoSwap(set, sb, res);
+		return res;
+	}
+	private void helperNoSwap(String set, StringBuilder sb, List<String> res) {
+		if(set.isEmpty()) {
+			res.add(sb.toString());
+			return;
+		}
+		for(int i = 0; i < set.length(); i++) {
+			// take one character from the original string and form an new string
+			String newString = set.substring(0, i) + set.substring(i+1);
+			sb.append(set.charAt(i));
+			helperNoSwap(newString, sb, res);
+			sb.deleteCharAt(sb.length()-1);
+			
+		}
+	}
+	// With duplication: use hashSet to remove duplication
+	public List<String> permutationsDup(String input){
+		List<String> result = new ArrayList<String>();
+		if(input == null) return result;
+		char[] set = input.toCharArray();
+		dfsDup(set, 0, result);
+		return result;
+	}
+	// index is the current layer we are using
+	private void dfsDup(char[] array, int index, List<String> res) {
+		if(index == array.length) {
+			res.add(new String(array));
+			return;
+		}
+		// the only difference is to use hashSet to record the duplicate characters
+		Set<Character> used = new HashSet<Character>();
+		for(int i = index; i < array.length; i++) {
+			if(used.add(array[i])) {
+				swap(array, index, i);
+				dfsDup(array, index+1, res);
+				swap(array, index, i);
 			}
 		}
 	}
