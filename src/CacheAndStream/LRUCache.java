@@ -6,7 +6,7 @@ package CacheAndStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import HashTable_String.RemoveCertainCharacters;
+import HashTable_Map_String.RemoveCertainCharacters;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com

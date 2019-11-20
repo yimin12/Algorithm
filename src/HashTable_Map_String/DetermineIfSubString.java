@@ -1,7 +1,7 @@
 /**
  * 
  */
-package HashTable_String;
+package HashTable_Map_String;
 
 
 /**

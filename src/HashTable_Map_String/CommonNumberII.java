@@ -1,7 +1,7 @@
 /**
  * 
  */
-package HashTable_String;
+package HashTable_Map_String;
 
 import java.util.ArrayList;
 import java.util.HashMap;
