@@ -6,7 +6,9 @@ import java.util.Arrays;
 * @author yiminH-mail:hymlaucs@gmail.com
 * @version Create Time：2019年10月13日 下午1:08:12
 * Description: 
-* 	A hashtable implementation of map, demonstration purpose, generic type is provided
+* 	A hashtable implementation of map, demonstration purpose, generic type is provided 
+* 	(You need to consider concurrency problem)
+* 		Cases you need to synchronized: when you need to manipulate (read or write) information of HashMap
 * 	supported operations:
 * 		size();
 * 		isEmpty();
@@ -59,19 +61,19 @@ public class MyHashMap<K, V> {
 		this.size = 0;
 		this.loadFactor = loadFactor;
 	}
-	// basic function implementation
-	public int size() {
+	// basic function implementation, every fields of hashMap should be locked, because it might have the concurrency problem
+	public synchronized int size() {
 		return size;
 	}
-	public boolean isEmpty() {
+	public synchronized boolean isEmpty() {
 		return size==0;
 	}
-	public void clear() {
+	public synchronized void clear() {
 		// clean all the element in HashMap and replace them with null
 		Arrays.fill(this.array, null);
 		size = 0;
 	}
-	// hashCode implementation !!!!
+	// hashCode implementation, just do some calculation, like helper class, do not need to synchronized !!!!
 	private int hash(K key) {
 		// Corner Case, when key is null
 		if(key == null) {
@@ -96,7 +98,7 @@ public class MyHashMap<K, V> {
 		return v1 == v2 || v1 != null && v1.equals(v2);
 	}
 	// traverse the whole array, and traverse each of the linked list in the array
-	public boolean containsValue(V value) {
+	public synchronized boolean containsValue(V value) {
 		// special case
 		if(isEmpty()) {
 			return false;
@@ -115,7 +117,7 @@ public class MyHashMap<K, V> {
 	private boolean equalsKey(K k1, K k2) {
 		return k1==k2 || k1!=null && k1.equals(k2);
 	}
-	public boolean containsKey(K key) {
+	public synchronized boolean containsKey(K key) {
 		// get the index of the key
 		int index = getIndex(key);
 		Node<K, V> node = array[index];
@@ -128,7 +130,7 @@ public class MyHashMap<K, V> {
 		return false;
 	}
 	// get method, if key does not exist in the HashMap, return null
-	public V get(K key) {
+	public synchronized V get(K key) {
 		int index = getIndex(key);
 		Node<K, V> node = array[index];
 		while(node != null) {
@@ -140,7 +142,7 @@ public class MyHashMap<K, V> {
 		return null;
 	}
 	// insert/update: if key already exists, return the old corresponding value, if key not exists, return null
-	public V put(K key, V value) {
+	public synchronized V put(K key, V value) {
 		int index = getIndex(key);
 		// if you get same index after hashing function, you should implement single linked list
 		Node<K, V> head = array[index];
@@ -180,20 +182,27 @@ public class MyHashMap<K, V> {
 		}
 	}
 	// remove function, it will return null if the array does not contain the keys
-	private V remove(K key) {
-		V result = null;
+	private synchronized V remove(K key) {
 		int index = getIndex(key);
-		Node<K, V> node = array[index];
-		if(node != null && node.key == key) {
-			result = node.value;
-			node = node.next;
-		}
-		while(node != null ) {
-			if(equalsKey(node.next.key, key)) {
-				result = node.next.value;
-				node.next = node.next.next;
+		Node<K, V> prev = null;
+		Node<K, V> cur = array[index];
+		while(cur!=null) {
+			if(equalsKey(cur.key, key)) {
+				if(prev == null) {
+					// this is the first Node it that corresponding bucket
+					array[index] = cur.next;
+					size--;
+					return cur.value;
+				} else {
+					prev.next = cur.next;
+					size--;
+					return cur.value;	
+				}
 			}
+			prev = cur;
+			cur = cur.next;
 		}
-		return result;
+		// if nothing found, just return null
+		return null;
 	}
 }
