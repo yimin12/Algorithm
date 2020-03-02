@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2019Äê10ÔÂ21ÈÕ ÉÏÎç11:59:09
+* @version Create Timeï¿½ï¿½2019ï¿½ï¿½10ï¿½ï¿½21ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:59:09
 * Description:
 * 	Given an unlimited flow of numbers, keep track of the median of all elements seen so far.
 * 	You will have to implement the following two methods for the class
@@ -42,8 +42,8 @@ public class MedianTracker {
 		} else {
 			largerHalf.offer(value);
 		}
-//		After we insert the value, only when size(smallerHalf) == size£¨largeHalf£©+2 
-//		or size(smallerHalf) == size£¨largeHalf£© - 1 will break the balance, and we need to do the 
+//		After we insert the value, only when size(smallerHalf) == sizeï¿½ï¿½largeHalfï¿½ï¿½+2 
+//		or size(smallerHalf) == sizeï¿½ï¿½largeHalfï¿½ï¿½ - 1 will break the balance, and we need to do the 
 //		adjustment accordingly.
 		if(smallerHalf.size() - largerHalf.size() >= 2) {
 			largerHalf.offer(smallerHalf.poll());
@@ -66,4 +66,5 @@ public class MedianTracker {
 	private int size() {
 		return smallerHalf.size() + largerHalf.size();
 	}
+	
 }
