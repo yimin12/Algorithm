@@ -1,6 +1,4 @@
-/**
- * 
- */
+  
 package williamsNotebook.easy.slidingwindow;
 
 import java.util.ArrayDeque;

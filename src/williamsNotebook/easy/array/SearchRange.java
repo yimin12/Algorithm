@@ -52,23 +52,6 @@ public class SearchRange {
 		return new int[] {start, end};
 	}
 	
-//	FollowUp 2:
-//	Given k sorted integer arrays, pick k elements (one element from each of sorted arrays), what is 
-//	the smallest range.
-//	We define the range [a,b] is smaller than range [c,d] if b-a < d-c or a < c if b-a == d-c.
-	/*
-	 * // Assumption:k >= 2 and None of the k arrays is null or empty Examples:
-	 * 
-	 * { { 1, 4, 6 },
-	 * 
-	 * { 2, 5 },
-	 * 
-	 * { 8, 10, 15} }
-	 * 
-	 * pick one element from each of 3 arrays, the smallest range is {5, 8} (pick 6
-	 * from the first array, pick 5 from the second array and pick 8 from the third
-	 * array).
-	 */
 	
 	
 	public static void main(String[] args) {
