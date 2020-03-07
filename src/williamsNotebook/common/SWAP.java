@@ -15,4 +15,10 @@ public class SWAP {
 		array[left] = array[right];
 		array[right] = temp;
 	}
+	
+	public static void intSwap(int[] array, int left, int right) {
+		int temp = array[left];
+		array[left] = array[right];
+		array[right] = temp;
+	}
 }
