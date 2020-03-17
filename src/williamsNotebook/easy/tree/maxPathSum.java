@@ -14,7 +14,7 @@ import williamsNotebook.common.TreeNode;
  */
 public class maxPathSum {
 	
-	// Situation 1: Max Path Sum Binary Tree (path from left to node)
+	// Situation 1: Max Path Sum Binary Tree (path from leaf to root)
 	// Method 1: Pass down the prefix sum
 	// Time: O(n)  Space: O(height)
 	public int maxPathSumStraight(TreeNode root) {

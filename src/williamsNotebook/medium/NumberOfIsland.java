@@ -71,38 +71,6 @@ public class NumberOfIsland {
 		}
 	}
 	
-	// Method 2: using bfs, have problem 
-	public int numIslandsBFS(char[][] grid) {
-		// sanity check 
-		if(grid == null || grid.length == 0 || grid[0].length == 0) {
-			return 0;
-		}
-		int count = 0, rows = grid.length, cols = grid[0].length;
-		Queue<Character> queue = new ArrayDeque<Character>();
-		for(int i = 0; i < rows; i++) {
-			for(int j = 0; j < cols; j++) {
-				if(grid[i][j] == '1') {
-					count++;
-					System.out.println("found an island at " + i + " " + j);
-					queue.offer(grid[i][j]);
-					grid[i][j] = '2';
-					int neiI = i, neiJ = j;
-					while(!queue.isEmpty()) {
-						queue.poll();
-						for(int[] dir:dirs) {
-							neiI = neiI + dir[0];
-							neiJ = neiJ + dir[1];
-							if(neiI >= 0 && neiI < rows && neiJ >=0 && neiJ < cols && grid[neiI][neiJ] == '1') {
-								queue.offer(grid[neiI][neiJ]);
-								grid[neiI][neiJ] = '2';
-							}
-						}
-					}
-				}
-			}
-		}
-		return count;
-	}
 	
 	public static void main(String[] args) {
 		NumberOfIsland solution = new NumberOfIsland();
@@ -110,7 +78,7 @@ public class NumberOfIsland {
 									  {'1','1','0','0','0'},
 									  {'0','0','1','0','0'},
 									  {'0','0','0','1','1'}};
-		int numIslands = solution.numIslandsBFS(grid);	
+		int numIslands = solution.numIslandsDFS(grid);	
 		System.out.println(numIslands);
 	}
 }

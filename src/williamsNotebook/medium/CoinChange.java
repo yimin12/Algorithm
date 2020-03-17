@@ -51,6 +51,7 @@ public class CoinChange {
 				}
 			}
 		}
+		System.out.println(Arrays.deepToString(dp));
 		return dp[0][amount];
 	}
 	// Solution 2: Optimization for Time complexity when you notice 
@@ -156,7 +157,7 @@ public class CoinChange {
 	
 	public static void main(String[] args) {
 		CoinChange solution = new CoinChange();
-		int coinChange = solution.coinChangeDFSGreedy(new int[] {1,2,5} , 11);
+		int coinChange = solution.coinChange(new int[] {1,2,5} , 11);
 		System.out.println(coinChange);
 		
 		

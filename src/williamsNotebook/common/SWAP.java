@@ -21,4 +21,12 @@ public class SWAP {
 		array[left] = array[right];
 		array[right] = temp;
 	}
+	
+	public static void matrixSwap(int[][] matrix, int left, int right) {
+		int rows = matrix.length, cols = matrix[0].length;
+
+		int temp = matrix[left/cols][left%cols];
+		matrix[left/cols][left%cols] = matrix[right/cols][right%cols];
+		matrix[right/cols][right%cols] = temp;
+	}
 }
