@@ -57,7 +57,7 @@ public class LowestCommonAncestor {
 		return length;
 	}
 	
-	// Follow Up 2: Common way without parent pointer
+	// Follow Up 2: Common way without parent pointer, and validate whether these trees are in the same tree
 	// Time: O(n)  and Space O(height) Extra space
 	public TreeNode LCAI(TreeNode root, TreeNode one, TreeNode two) {
 		if(root == null) return null;
@@ -167,5 +167,14 @@ public class LowestCommonAncestor {
 		}
 		if(count > 1) return root;
 		return temp;
+	}
+	
+	// Follow Up 6: I. Lowest Common Ancestor of a Binary Search Tree:
+	// DFS: Time ~ O(logN), Space ~ O(logN)
+	// Key insight: The first valid nodes is the lowest common ancestor, because we traverse from root to leaf
+	public TreeNode LCAVI(TreeNode root, TreeNode one, TreeNode two) {
+		if(root.val < one.val && root.val < two.val) return LCAVI(root.right, one, two);
+		else if (root.val > one.val && root.val > two.val) return LCAVI(root.left, one, two);
+		else return root;
 	}
 }

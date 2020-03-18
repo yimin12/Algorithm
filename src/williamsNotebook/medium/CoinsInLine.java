@@ -3,6 +3,8 @@
  */
 package williamsNotebook.medium;
 
+import java.util.Arrays;
+
 /**
  * @author yimin Huang
  *
@@ -41,6 +43,7 @@ public class CoinsInLine {
 				dp[r][c] = (r == c) ? array[r] : (sumA[r][c] - Math.min(dp[r + 1][c], dp[r][c-1]));
 			}
 		}
+		System.out.println(Arrays.deepToString(sumA));
 		return dp[0][N - 1];
 	}
 	// Method 2 :  avoid pre-computing and storing sum_{k = i}^j A[k].
@@ -102,5 +105,10 @@ public class CoinsInLine {
 	    str.append("The total amount of money that I get is " + d[0][N - 1]);        
 	    return str.toString();
 	}
-
+	
+	public static void main(String[] args) {
+		CoinsInLine solution = new CoinsInLine();
+		int maxMoney = solution.maxMoney(new int[] {3,2,2,3,1,2});
+		System.out.println(maxMoney);
+	}
 }
