@@ -68,7 +68,7 @@ public class ReverseListNode {
 	/*
 	 * For example: Given 1->2->3->4->5->NULL, m = 2 and n = 4, return
 	 * 		1->4->3->2->5->NULL.
-	 * Assumption: 1 ≤ m ≤ n ≤ length of list.
+	 * Assumption: 1 鈮� m 鈮� n 鈮� length of list.
 	 */
 	// Time ~ O(N), Space ~ O(1)
 	public ListNode reverseBetween(ListNode head, int m, int n) {
@@ -157,6 +157,39 @@ public class ReverseListNode {
 		return dummy.next;
 	}
 	
+	// Follow Up 4: Reverse a linked list from position m _to _n. Do it in one-pass.
+	// Input: 1->2->3->4->5->NULL, m = 2, n = 4
+	// Output: 1->4->3->2->5->NULL
+	// Assumption:  1 ≤m≤n≤ length of list.
+	public ListNode revereseBetween(ListNode head, int m, int n) {
+		// Assumption, if something is invalid, return itself
+		if (head == null || head.next == null || m >= n) {
+	           return head; 
+	        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        for (int i = 1; i < m; i++) {
+            if (head == null) {
+                return null;
+            }
+            head = head.next;
+        } 
+        ListNode prevNode = head, tailNode = head.next;
+        ListNode cur = head.next;
+        prevNode.next = null;
+        for(int i = m; i <= n; i++) {
+        	if(i == n) {
+        		tailNode.next = cur.next;
+        	}
+        	ListNode next = cur.next;
+        	cur.next = prevNode.next;
+        	prevNode.next = cur;
+        	cur = next;
+        }
+        return dummy.next;
+		
+	}
 	public static void main(String[] args) {
 		ReverseListNode solution = new ReverseListNode();
 		ListNode head = new ListNode(1);
@@ -168,7 +201,7 @@ public class ReverseListNode {
 		two.next = three;
 		three.next = four;
 		four.next = five;
-		ListNode reverseKGroup = solution.reverseKGroup(head, 3);
+		ListNode reverseKGroup = solution.revereseBetween(head,2,4);
 		while(reverseKGroup != null) {
 			System.out.print(reverseKGroup.key + " ");
 			reverseKGroup = reverseKGroup.next;

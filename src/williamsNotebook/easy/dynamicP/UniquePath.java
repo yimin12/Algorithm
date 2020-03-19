@@ -228,7 +228,7 @@ public class UniquePath {
 		int uniquePathWithObstacles = solution.uniquePathWithObstaclesDPOptimized(matrix);
 		System.out.println(uniquePathWithObstacles);
 		
-		int[][] test = new int[][] {{1,0,0,0},{0,0,0,0},{0,0,-1,2}};
+		int[][] test = new int[][] {{1,0,0,0},{0,0,0,0},{0,0,2,-1}};
 		int uniquePathIII = solution.uniquePathIII(test);
 		System.out.println(uniquePathIII);
 	}
