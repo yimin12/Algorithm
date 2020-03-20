@@ -169,6 +169,7 @@ public class ReverseListNode {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         head = dummy;
+        // step 1: find breaking point
         for (int i = 1; i < m; i++) {
             if (head == null) {
                 return null;
@@ -178,10 +179,12 @@ public class ReverseListNode {
         ListNode prevNode = head, tailNode = head.next;
         ListNode cur = head.next;
         prevNode.next = null;
+        // step 2: need record the prevNode and tailNode and start to reverse
         for(int i = m; i <= n; i++) {
         	if(i == n) {
         		tailNode.next = cur.next;
         	}
+        	// good strategy to use prevNode.prev to do the operation
         	ListNode next = cur.next;
         	cur.next = prevNode.next;
         	prevNode.next = cur;
