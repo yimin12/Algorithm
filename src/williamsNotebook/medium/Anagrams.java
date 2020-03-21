@@ -4,10 +4,10 @@
 package williamsNotebook.medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 /**
  * @author yimin Huang
  *	
@@ -47,5 +47,41 @@ public class Anagrams {
 			if(count[i] > 0) str.append(i).append(count[i]);
 		}
 		return str.toString();
+	}
+	
+	// Follow Up 2: Group Anagrams
+	// Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+	// Output:
+	// [
+	//  ["ate","eat","tea"],
+	//  ["nat","tan"],
+	//  ["bat"]
+	// ]
+	// Time Complexity: O(NK \log K)O(NKlogK), where NN is the length of strs, and KK is the maximum 
+	// length of a string in strs. The outer loop has complexity O(N)O(N) as we iterate through each 
+	// string. Then, we sort each string in O(K \log K)O(KlogK) time.
+	public List<List<String>> groupAnagrams(String[] strs){
+		if(strs.length == 0) return new ArrayList<List<String>>();
+		Map<String, List<String>> res = new HashMap<String, List<String>>();
+		// Assume that there only 26 lower case character
+		int[] count = new int[26];
+		for(String s:strs) {
+			// reset the counting board
+			Arrays.fill(count, 0);
+			for(char c : s.toCharArray()) {
+				count[c - 'a']++;
+			}
+			StringBuilder sb = new StringBuilder("");
+			for(int i = 0; i < 26; i++) {
+				sb.append("#");
+				while(count[i] > 0) {
+					sb.append(count[i]--);
+				}
+			}
+			String key = sb.toString();
+			if(!res.containsKey(key)) res.put(key, new ArrayList<>());
+			res.get(key).add(s);
+		}
+		return new ArrayList<List<String>>(res.values());
 	}
 }

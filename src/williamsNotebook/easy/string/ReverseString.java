@@ -94,7 +94,7 @@ public class ReverseString {
 		while(left < right) {
 			char temp = array[left];
 			array[left++] = array[right];
-			array[right++] = temp;
+			array[right--] = temp;
 		}
 	}
 	
@@ -108,5 +108,35 @@ public class ReverseString {
 		reverse(array, 0, array.length - n - 1);
 		reverse(array, 0, array.length);
 		return new String(array);
+	}
+	
+	// Follow Up 4: Given a string, you need to reverse the order of characters 
+	// in each word within a sentence while still preserving whitespace and initial word order.
+	// Input:  "Let's take LeetCode contest", Output:  "s'teL ekat edoCteeL tsetnoc"
+	public String reverseWordsI(String s) {
+		if(s == null || s.length() == 0) return s;
+		char[] array = s.toCharArray();
+		int start = -1;
+		for(int fast = 0 ; fast < s.length(); fast++) {
+			// corner case: handle the leading space 
+			if(array[fast] != ' ' && start == -1) {
+				start = fast;
+				continue;
+			} 
+			if(array[fast] == ' ' && start != -1) {
+				reverse(array, start, fast - 1);
+				start = fast+1;
+			}
+		}
+		if (start != s.length() - 1) {
+			reverse(array, start, s.length() - 1);
+		}
+		return new String(array);
+	}
+
+	public static void main(String[] args) {
+		ReverseString solution = new ReverseString();
+		String reverseWordsII = solution.reverseWordsI( "s'teL ekat edoCteeL tsetnoc");
+		System.out.println(reverseWordsII);
 	}
 }
