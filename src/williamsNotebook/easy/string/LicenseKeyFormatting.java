@@ -18,11 +18,24 @@ package williamsNotebook.easy.string;
 *   Explanation:
 *   	The string S has been split into two parts, each part has 4 characters. Note that the two extra dashes are not needed and can be removed.
 */
-
-/**
- * @author 61771
- *
- */
 public class LicenseKeyFormatting {
 
+	
+	// Iterate from the end to the front, in one pass
+	// Time: O(n) and Extra Space: O(n) for using string builder
+	public String licenseKeyFormatting(String s, int k) {
+		StringBuilder sb = new StringBuilder();
+		int count = 0;
+		for(int i = s.length() - 1; i >= 0; i--) {
+			char c = s.charAt(i);
+			if(c == '-') continue;
+			if(count == k) {
+				sb.append("-");
+				count = 0;
+			}
+			sb.append(Character.toUpperCase(c));
+			count++;
+		}
+		return sb.reverse().toString();
+	}
 }
