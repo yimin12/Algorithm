@@ -1,7 +1,9 @@
 /**
  * 
  */
-package williamsNotebook.common;
+package williamsNotebook.common.QueueAndStack;
+
+import williamsNotebook.common.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com

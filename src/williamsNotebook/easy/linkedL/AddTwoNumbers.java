@@ -2,6 +2,7 @@
  * 
  */
 package williamsNotebook.easy.linkedL;
+
 import williamsNotebook.common.ListNode;
 
 /**
