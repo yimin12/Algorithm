@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-import williamsNotebook.common.DirectGraph;
+import williamsNotebook.common.graph.DirectGraph;
 
 /**
  * @author yimin Huang

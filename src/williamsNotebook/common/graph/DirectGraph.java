@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common;
+package williamsNotebook.common.graph;
 
 import java.util.ArrayList;
 import java.util.List;

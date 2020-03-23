@@ -10,7 +10,7 @@ package williamsNotebook.easy.array;
  *		the contiguous subarray [4,鈭�1,2,1] has the largest sum = 6.
  * Algorithm Class
  */
-public class MaximumSubarray {
+public class MaximumSubarraySum {
 	
 	// Time : O(n) and Extra Space : O(n) can be optimized to O(1)
 	public int maxSubarraySum(int[] array) {
@@ -49,7 +49,7 @@ public class MaximumSubarray {
 	}
 	
 	public static void main(String[] args) {
-		MaximumSubarray solution = new MaximumSubarray();
+		MaximumSubarraySum solution = new MaximumSubarraySum();
 		int maxSubarraySum = solution.maxSubarraySum(new int[] {-2,1,-3,4,-1,2,1,-5,4});
 		System.out.println(maxSubarraySum);
 		

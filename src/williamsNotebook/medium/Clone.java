@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-import williamsNotebook.common.GraphNode;
+import williamsNotebook.common.graph.GraphNode;
 
 /**
  * @author yimin Huang

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common;
+package williamsNotebook.common.classified;
 
 import java.util.HashMap;
 import java.util.HashSet;
