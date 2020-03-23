@@ -56,14 +56,17 @@ public class SubarrayEqualsK {
 		// sanity check
 		if(array == null) throw new IllegalArgumentException("the given array is invalid");
 		if(array.length == 0) return 0;
-		Map<Integer, Integer> sum = new HashMap<Integer, Integer>();
-		sum.put(0, 1);
-		int prefixSum = 0;
-		int count = 0;
-		for(int i:array) {
-			prefixSum += i;
-			count += sum.getOrDefault(prefixSum - target, 0);
-			sum.put(prefixSum, sum.getOrDefault(prefixSum, 0) + 1);
+		int prefixSum = 0, count = 0;
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for(int i = 0; i < array.length; i++) {
+			prefixSum += array[i];
+			if(prefixSum == target) {
+				count++;
+			}
+			if(map.containsKey(prefixSum - target)) {
+				count += map.get(prefixSum - target);
+			}
+			map.put(prefixSum, map.getOrDefault(prefixSum, 0) + 1);
 		}
 		return count;
 	}

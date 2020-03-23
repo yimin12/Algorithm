@@ -18,7 +18,7 @@ import java.util.Arrays;
 * 	For given[1, 3, -1, 2, -1, 2], the two subarrays are[1, 3]and[2, -1, 2]or[1, 3, -1, 2]and[2], 
 * 	they both have the largest sum7.
 */
-public class MaximumSubArrayII {
+public class MaximumSubArraySumII {
 
 	// Method 1: Dynamic Programming, Kadane's Algorithm
 	// Time: O(n) and Extra Space O(n);
@@ -125,7 +125,7 @@ public class MaximumSubArrayII {
 		return globalMax[n][k];
 	}
 	public static void main(String[] args) {
-		MaximumSubArrayII solution = new MaximumSubArrayII();
+		MaximumSubArraySumII solution = new MaximumSubArraySumII();
 		int[] array = {-1,4,-2,3,-2,3};
 		int maxKSumArraySum = solution.maxKSumArraySum(array, 2);
 		System.out.println(maxKSumArraySum);
