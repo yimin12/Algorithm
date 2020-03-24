@@ -80,7 +80,7 @@ public class Parentheses {
 	 * dp[i] : length of the longest valid parenthesis start from s[i];
 	 * dp[i] = dp[i+1] + 2 + dp[i+1+dp[i+1]+1) if s[i] == '(' and s[i+1+d[i+1] == ')'
 	 */
-    // Dynamic Program: Time: O(n), Space: O(n)
+    // Method 1 :Dynamic Program: Time: O(n), Space: O(n)
     public int longestValidParenthesis(String s) {
     	if(s == null) return 0;
     	int n = s.length();
@@ -102,7 +102,60 @@ public class Parentheses {
     	}
     	return max;
     }
+    // Method 2: Storing Index in stack and without elimination
+    // Time: O(n) and Space O(n) in worst case
+    public int longestValidParentheses(String s) {
+    	Deque<Integer> stack = new LinkedList<Integer>();
+    	int len = s.length();
+    	int longest = 0;
+    	stack.offerFirst(-1);
+    	for(int i = 0; i < len; i++) {
+    		if(s.charAt(i) == '(') {
+    			stack.offerFirst(i);
+    		} else {
+    			stack.pop();
+    			if(stack.isEmpty()) {
+    				stack.push(i);
+    			} else {
+    				longest = Math.max(longest, i-stack.peek());
+    			}
+    		}
+    	}
+    	return longest;
+    }
     
+    // Method 3: Two Counters, kind of greedy (why must we traverse it in two different directions) try "(()"
+    // Time: O(n) and Space O(1)
+    public int longestValidParenthesesIII(String s) {
+    	int left = 0, right = 0, maxlength = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            if (left == right) {
+                maxlength = Math.max(maxlength, 2 * right);
+            } else if (right >= left) {
+                left = right = 0;
+            }
+        }
+        left = right = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            if (left == right) {
+                maxlength = Math.max(maxlength, 2 * left);
+            } else if (left >= right) {
+                left = right = 0;
+            }
+        }
+        return maxlength;
+    }
+
     // followUp 4: 
     // All Validation of Parenthesis II(L pairs of (), M pairs of[], N pairs of {})
     // get all valid permutation of pairs of (), m pairs of <> and n pairs of {}
@@ -153,10 +206,12 @@ public class Parentheses {
     
     public static void main(String[] args) {
     	Parentheses solution = new Parentheses();
-    	List<String> validParenthesisII = solution.validParenthesisII(2, 2, 1);
-    	for(String string : validParenthesisII) {
-    		System.out.println(string);
-    	}
+//    	List<String> validParenthesisII = solution.validParenthesisII(2, 2, 1);
+//    	for(String string : validParenthesisII) {
+//    		System.out.println(string);
+//    	}
+    	int longestValidParentheses = solution.longestValidParenthesesIII("(()");
+    	System.out.println(longestValidParentheses);
 	}
 }
 	
