@@ -17,7 +17,7 @@ import java.util.Set;
  *	If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
  *	The replacement must be in-place, do not allocate extra memory.
  *	Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.
- *	1,2,3 → 1,3,2; 3,2,1 → 1,2,3; 1,1,5 → 1,5,1
+ *	1,2,3 鈫� 1,3,2; 3,2,1 鈫� 1,2,3; 1,1,5 鈫� 1,5,1
  *	
  * Algorithm Class
  */
@@ -25,6 +25,11 @@ public class Permutation {
 
 	// Next Permutation: Time ~ O(2N), Space ~ O(1)
 	// Time ~ O(2N), Space ~ O(1)
+	// Key insight: 
+	// step 1: search the first a[i+1] that is greater than a[i] from right to left
+	// step 2: find the value is exact smallest larger than a[i-1], if no such element, return to the smallest situation
+	// step 3: swap the next larger value with a[i-1]
+	// step 4: reverse the element between [i+1, nums,length]
 	public void nextPermutation(int[] num) {
 		// Time: O(N), Space: O(1)
 	    // E.g.: 6 8 7 4 3 2 -> 7 2 3 4 6 8 (partition number: 6, swap with 7)
@@ -166,7 +171,7 @@ public class Permutation {
 	
 	// FollowUp 4: kth Permutation Sequence
 	/*
-	 * The set [1,2,3,…,n] contains a total of n! unique permutations. By listing
+	 * The set [1,2,3,鈥�,n] contains a total of n! unique permutations. By listing
 	 * and labeling all of the permutations in order, We get the following sequence
 	 * (ie, for n = 3): "123" "132" "213" "231" "312" "321" Given n and k, return
 	 * the kth permutation sequence.
