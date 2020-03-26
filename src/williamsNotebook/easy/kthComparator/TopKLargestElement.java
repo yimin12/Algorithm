@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.easy.abstraction;
+package williamsNotebook.easy.kthComparator;
 
 import java.util.Arrays;
 import java.util.Comparator;

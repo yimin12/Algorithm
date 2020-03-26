@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.easy.kthComparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
