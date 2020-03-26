@@ -83,6 +83,52 @@ public class MergeSortedArray {
 			return e1.value < e2.value ? -1 : 1;
 		}
 	}
+	// Method 2: Divide and Conquer, which is binary reduction
+	// Time:  O(N log k). Space is logK for calling stack
+	public int[] mergeKSortedArraysII(int[][] arrays) {
+		if(arrays == null || arrays.length == 0 || arrays[0].length == 0) return new int[0];
+		return divide_conquer(arrays);
+	}
+	private int[] divide_conquer(int[][] arrays) {
+		while(arrays.length > 1) {
+			int n = arrays.length / 2;
+			// auto fill when the number of arrays is odd
+			if(arrays.length % 2 == 1) n++;
+			// can initialize later
+			int temp[][] = new int[n][];
+			int index = 0;
+			for(int i = 0; i < arrays.length && i + 1 < arrays.length; i+=2) {
+				temp[index++] = mergeTwoSortedArrayII(arrays[i], arrays[i+1]);
+			}
+			if(arrays.length%2 == 1) temp[index++] = arrays[arrays.length - 1];
+			arrays = temp;
+		}
+		return arrays[0];
+	}
+	private int[] mergeTwoSortedArrayII(int[] one, int[] two) {
+		// base case
+		if(one == null || one.length == 0) return two;
+		if(two == null || two.length == 0) return one;
+		int totalLength = one.length + two.length;
+		int[] res = new int[totalLength];
+		int index = 0;
+		int leftBound = 0, rightBount = 0;
+		while(leftBound < one.length && rightBount < two.length) {
+			if(one[leftBound] <= two[rightBount]) {
+				res[index++] = one[leftBound++];
+			} else {
+				res[index++] = two[rightBount++];
+			}
+		}
+		// do the post processing
+		while(leftBound < one.length) {
+			res[index++] = one[leftBound++];
+		}
+		while(rightBount < two.length) {
+			res[index++] = two[rightBount++];
+		}
+		return res;
+	}
 	
 	// FollowUp3: find common elements in k sorted arrays, assume the element is integer
 	// Use best first search Time: O(nk*logk) Space: O(k), but the most efficient way is comparing each arrays one by one

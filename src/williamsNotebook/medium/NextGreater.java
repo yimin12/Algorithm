@@ -154,6 +154,36 @@ public class NextGreater {
 		return res;
 	}
 	
+	// Follow Up 3: Given a positive 32-bit integer n, you need to find the smallest 32-bit integer 
+	// which has exactly the same digits existing in the integernand is greater in value than n. If no 
+	// such positive 32-bit integer exists, you need to return -1. logic is similar with next permutation
+	public int nextGreaterElement(int n) {
+		char[] number = (n + "").toCharArray();
+		int i, j;
+		// step 1: search the first a[i] that is greater than a[i-1] from right to left
+		for(i = number.length-1; i>=0; i--) {
+			if(number[i-1] < number[i]) break;
+		}
+		// if there is no such situation, it is the largest one with same digits
+		if(i==0) {
+			return -1;
+		}
+		// step 2: find the value is exact smallest larger than a[i-1], we can not use binary search cause it is not sorted
+		int x = number[i-1], smallest = i;
+		for(j = i + 1; j < number.length; j++) {
+			if(number[j] > x && number[j] <= number[smallest]) {
+				smallest = j;
+			}
+		}
+		// step 3: swap the next larger value with a[i-1]
+		char temp = number[i-1];
+		number[i-1] = number[smallest];
+		number[smallest] = temp;
+		// step 4: Sort the digits after (i-1) in ascending order
+		Arrays.sort(number, i, number.length);
+		long val = Long.parseLong(new String(number));
+		return (val <= Integer.MAX_VALUE ? (int)val : -1);
+	}
 	public static void main(String[] args) {
 		NextGreater solution = new NextGreater();
 		int[] one = new int[] {4,1,2};

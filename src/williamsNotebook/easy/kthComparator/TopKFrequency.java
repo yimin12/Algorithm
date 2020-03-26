@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.easy.kthComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,16 +18,16 @@ import java.util.PriorityQueue;
  *	You answer should be sorted by frequency from highest to lowest. If two words have the same frequency, then the word with 
  *  the lower alphabetical order comes first
  *  
- *  Assumptions：
+ *  Assumptions�?
  *  	the composition is not null and is not guaranteed to be sorted
  *  	K >= 1 and K could be larger than the number of distinct words in the composition, in this case, just return all
  *      	the distinct words
- *  Return：
+ *  Return�?
  *  	a list of words ordered from most frequent one to least frequent one (the list could be of size K or smaller than K)
  *  Example:
- *  	Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 2 frequent words are [“b”, “c”]
- *  	Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 4 frequent words are [“b”, “c”, "a", "d"]
- *  	Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 5 frequent words are [“b”, “c”, "a", "d"]
+ *  	Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 2 frequent words are [“b�?, “c”]
+ *  	Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 4 frequent words are [“b�?, “c�?, "a", "d"]
+ *  	Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 5 frequent words are [“b�?, “c�?, "a", "d"]
  * Algorithm Class
  */
 public abstract class TopKFrequency {
