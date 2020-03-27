@@ -5,8 +5,11 @@ package williamsNotebook.medium;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Queue;
 
+import williamsNotebook.common.SimpleUnionFind;
+import williamsNotebook.common.UnionFind;
 /**
  * @author yimin Huang
  *
@@ -70,8 +73,144 @@ public class NumberOfIsland {
 			dfs(grid, neiX, neiY, rows, cols);
 		}
 	}
+	// Method 2: same just the regular dfs
+	public int numIslandsDFSII(boolean[][] grid) {
+		// Assumption: the given the input is valid
+		if(grid == null || grid.length == 0 || grid[0].length == 0) return 0;
+		int m = grid.length, n = grid[0].length;
+		int nums = 0;
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(grid[i][j] == false) {
+					continue;
+				}
+				nums++;
+				dfsII(grid, i, j);
+			}
+		}
+		return nums;
+	}
+	private void dfsII(boolean[][] grid, int row, int col) {
+		if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) {
+			return;
+		}
+		if(grid[row][col] == true) {
+			grid[row][col] = false;
+			dfsII(grid, row-1, col);
+			dfsII(grid, row+1, col);
+			dfsII(grid, row, col-1);
+			dfsII(grid, row, col+1);
+		}
+	}
+	// Method 3: BFS Solution
+	static class Point{
+		int row, col;
+		Point(int row, int col){
+			this.row = row;
+			this.col = col;
+		}
+	}
+	public int numIslandBFS(char[][] grid) {
+		if(grid == null || grid.length == 0 || grid[0].length == 0) return 0;
+		int m = grid.length, n = grid[0].length;
+		int nums = 0;
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(grid[i][j] == '1') {
+					nums++;
+					grid[i][j] = '0';
+					Queue<Point> q = new LinkedList<Point>();
+					q.offer(new Point(i, j));
+					while(!q.isEmpty()) {
+						Point point = q.poll();
+						for(int k = 0; k < 4; k++) {
+							int nextX = point.row + dirs[k][0];
+							int nextY = point.col + dirs[k][1];
+							if(nextX >= 0 && nextX < m && nextY >= 0 && nextY < n && grid[nextX][nextY] == '1') {
+								grid[nextX][nextY] = '0';
+								q.offer(new Point(nextX, nextY));
+							}
+						}
+					}
+				}
+			}
+		}
+		return nums;
+	}
+	// Method 4: Another version of BFS by not implementing encapsulation class
+	private int m,n;
+	public int numsIslandBFSII(char[][] grid) {
+		if(grid == null || grid.length == 0 || grid[0].length == 0) return 0;
+		int m = grid.length, n = grid[0].length;
+		int count = 0;
+		boolean[][] visited = new boolean[m][n];
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(grid[i][j] == '1' && !visited[i][j]) {
+					count++;
+					bfs(grid, visited, i, j);
+				}
+			}
+		}
+		return count;
+	}
+	private void bfs(char[][] grid, boolean[][] visited, int x, int y) {
+		int[] dx = {1, 0 , -1, 0};
+	    int[] dy = {0, 1 , 0, -1};
+		Queue<Integer> moveX = new LinkedList<Integer>();
+		Queue<Integer> moveY = new LinkedList<Integer>();
+		moveX.offer(x);
+		moveY.offer(y);
+		visited[x][y] = true;
+		while(!moveX.isEmpty() && !moveY.isEmpty()) {
+			int curX = moveX.poll();
+			int curY = moveY.poll();
+			for(int i = 0; i < 4; i++) {
+				int nextX = curX + dx[i];
+				int nextY = curY + dy[i];
+				if(nextX >= 0 && nextX < grid.length && nextY >= 0 && nextY < n && !visited[x][y] && grid[x][y] == '1') {
+					visited[nextX][nextY] = true;
+					moveX.offer(nextX);
+					moveY.offer(nextY);
+				}
+			}
+		}
+	}
 	
-	
+	// Method 5: Union Find
+	public boolean isValid(int x, int y, int m, int n) {
+		return (x >= 0 && y >= 0 && x < m && y < n);
+	}
+	public int numIslandsUnionFind(boolean[][] grid) {
+		if(grid == null || grid.length == 0 || grid[0].length == 0) return 0;
+		int m = grid.length, n = grid[0].length;
+		int nums = 0;
+		IslandUnionFind uf = new IslandUnionFind();
+		uf.initIsland(grid);
+	    int[] dx = new int[] {-1, 1, 0, 0};
+        int[] dy = new int[] {0, 0, -1, 1};
+        for(int i = 0; i < m; i++) {
+        	for(int j = 0; j < n; j++) {
+        		if(isValid(i, j, m, n) && grid[i][j]) {
+        			// four directions for each point
+        			for(int k = 0; k < 4; k++) {
+        				int nextX = i + dx[k];
+            			int nextY = j + dy[k];
+            			if(isValid(nextX, nextY, m, n)) {
+            				int curParent = uf.find(i * n + j);
+            				int neiParent = uf.find(nextX * n + nextY);
+            				if(curParent != neiParent) {
+            					uf.union(curParent, neiParent);
+            					uf.updateCount(-1);
+            				}
+            			}
+        			}
+        		}
+        	}
+        }
+        return uf.getCount();
+
+	}
 	public static void main(String[] args) {
 		NumberOfIsland solution = new NumberOfIsland();
 		char[][] grid = new char[][] {{'1','1','0','0','0'},
@@ -80,5 +219,34 @@ public class NumberOfIsland {
 									  {'0','0','0','1','1'}};
 		int numIslands = solution.numIslandsDFS(grid);	
 		System.out.println(numIslands);
+	}
+}
+
+class IslandUnionFind extends SimpleUnionFind{
+	public int count;
+	public void initIsland(boolean grid[][]) {
+		count = 0;
+		int m = grid.length;
+		int n = grid[0].length;
+		this.parent = new int[m*n];
+		this.size = new int[m*n];
+		// initialize the union find
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(grid[i][j] == true) {
+					parent[i*n+j] = i * n + j;
+					count++;
+				} else {
+					parent[i * n + j] = -1;
+				}
+				this.size[i * n + j] = 1;
+			}
+		}
+	}
+	public void updateCount(int k) {
+		count = count + k;
+	}
+	public int getCount() {
+		return count;
 	}
 }
