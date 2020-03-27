@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.common.classified;
 
 import java.io.IOException;
 import java.io.Reader;

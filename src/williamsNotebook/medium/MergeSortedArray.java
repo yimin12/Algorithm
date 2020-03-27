@@ -84,7 +84,7 @@ public class MergeSortedArray {
 		}
 	}
 	// Method 2: Divide and Conquer, which is binary reduction
-	// Time:  O(N log k). Space is logK for calling stack
+	// Time:  O(N log k). Space is O(logK) for calling stack
 	public int[] mergeKSortedArraysII(int[][] arrays) {
 		if(arrays == null || arrays.length == 0 || arrays[0].length == 0) return new int[0];
 		return divide_conquer(arrays);
