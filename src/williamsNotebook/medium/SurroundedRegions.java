@@ -95,10 +95,81 @@ public class SurroundedRegions {
 			board[i][j] = -1;
 			int m = board.length, n = board[0].length;
 			// flooding by dfs
-			if(i + 1 < m) dfs(board, i+1, j);
+			if(i + 1 < m) dfs(board, i+1, j); 
 			if(i - 1 >= 0) dfs(board, i-1, j);
 			if(j - 1 >= 0) dfs(board, i, j-1);
 			if(j + 1 < 0) dfs(board, i, j+1);
+		}
+	}
+	// Method3: Union Find
+	static class UnionFind{
+		private int[] id;
+		private int[] size;
+		public UnionFind(int n) {
+			id = new int[n];
+			size = new int[n];
+		}
+		public int find(int i) {
+			while(i != id[i]) {
+				id[i] = id[id[i]];
+				i = id[i];
+			}
+			return i;
+		}
+		public void union(int x, int y) {
+			int i = find(x);
+			int j = find(y);
+			if(i == j) return;
+			if(size[i] < size[j]) {
+				id[i] = j;
+				size[j] += size[i];
+			} else {
+				id[j] = i;
+				size[i] += size[j];
+			}
+		}
+		public boolean connected(int x, int y) {
+			return find(x) == find(y);
+		}
+	}
+	private boolean isEdge(int M, int N, int i, int j) {
+		return (i == 0 || i == M - 1 || j == 0 || j == N - 1);
+	}
+	private boolean insideBoard(int M, int N, int i, int j) {
+		return (i < M && i >= 0 && j < N && j >= 0);
+	}
+	public void surroundedRegions(char[][] board) {
+		if(board == null || board.length == 0 || board[0].length == 0) {
+			return;
+		}
+		int M = board.length;
+		int N = board[0].length;
+		int[] dirX = {0,0,-1,1};
+		int[] dirY = {-1,1,0,0};
+		UnionFind uf = new UnionFind(M*N + 1);
+		for(int i = 0; i < M; i++) {
+			for(int j = 0; j < N; j++) {
+				if(board[i][j] == 'O') {
+					if(isEdge(M,N,i,j)) {
+						uf.union(i * N + j, M * N);
+					} else {
+						for(int k = 0; k < 4; k++) {
+							int x = i + dirX[k];
+							int y = j + dirY[k];
+							if(insideBoard(M, N, x, y) && board[x][y] == 'O') {
+								uf.union(i * N + j, x * N + y);
+							}
+						}
+					}
+				}
+			}
+		}
+		for(int i = 0; i < M; i++) {
+			for(int j = 0; j < N; j++) {
+				if(!uf.connected(i * N + j, M * N)) {
+					board[i][j] = 'X';
+				}
+			}
 		}
 	}
 }
