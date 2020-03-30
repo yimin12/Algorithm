@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

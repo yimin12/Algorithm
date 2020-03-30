@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common.classified;
+package williamsNotebook.common.hash;
 
 import williamsNotebook.common.node.ListNode;
 

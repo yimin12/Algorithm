@@ -7,11 +7,12 @@ package williamsNotebook.easy.linkedL;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
-import williamsNotebook.common.ListNode;
+
+import williamsNotebook.common.node.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ18ÈÕ ÏÂÎç8:18:14
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½18ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½8:18:14
 * Description:
 * 	Merge k sorted linked lists and return it as a new list. 
 * 	The new list should be made by splicing together the nodes of the first two lists.

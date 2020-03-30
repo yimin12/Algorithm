@@ -5,7 +5,7 @@ package williamsNotebook.easy.linkedL;
 
 import java.util.List;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
  * @author yimin Huang

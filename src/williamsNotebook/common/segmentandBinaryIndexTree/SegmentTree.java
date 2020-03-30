@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common.segmentTree;
+package williamsNotebook.common.segmentandBinaryIndexTree;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
@@ -22,6 +22,25 @@ public class SegmentTree {
 	// 3. partitioned - split in two part
 	// 4. exactly match - return the value;
 
+	
+	// Basic Operation:
+	// 1.Query    O(log(n))
+	// 2.Build    O(n)
+	// 3.Modify   O(log(n))
+	
+	// Practical problem
+	// 1. Sum within specific range
+	// 2. Maximum/Minimum within specific range
+	// 3. Count within specific range
+	
+	// Manipulate the SegmentTreeNode class for practical problem
+	
+//	   Heap        Segment Tree
+//       push    O(logn)        O(logn)
+//       pop     O(logn)        O(logn)
+//       top     O(1)           O(1)
+//       modify   X             O(logn)
+	
 	static class SegmentTreeNode{
 		public int start, end;
 		public SegmentTreeNode left,right;

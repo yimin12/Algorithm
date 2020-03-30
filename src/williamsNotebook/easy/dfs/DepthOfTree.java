@@ -3,10 +3,11 @@
  */
 package williamsNotebook.easy.dfs;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang
@@ -24,7 +25,52 @@ public class DepthOfTree {
 		if(root == null) return 0;
 		return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
 	}
-	
+	// Method 2: Simulate DFS to get Height By Stack
+	public int getHeightDFS(TreeNode root) {
+		if(root == null) return 0;
+		Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
+		Deque<Integer> value = new ArrayDeque<Integer>();
+		stack.push(root);
+		value.push(1); // initial height
+		int max = 0;
+		while(!stack.isEmpty()) {
+			TreeNode node = stack.pop();
+			int temp = value.pop();
+			max = Math.max(temp,  max);
+			if(node.left != null) {
+				stack.push(node.left);
+				value.push(temp + 1);
+			} 
+			if(node.right != null) {
+				stack.push(node.right);
+				value.push(temp + 1);
+			}
+		}
+		return max;
+	}
+	// Method 3: BFS
+	public int getHeightBFS(TreeNode root) {
+		if(root == null) {
+			return 0;
+		}
+		Deque<TreeNode> queue = new ArrayDeque<TreeNode>();
+		queue.offer(root);
+		int count = 0; // record the height
+		while(!queue.isEmpty()) {
+			int size = queue.size();
+			while(size-- > 0) {
+				TreeNode node = queue.poll();
+				if(node.left != null) {
+					queue.offer(node.left);
+				}
+				if(node.right != null) {
+					queue.offer(node.right);
+				}
+			}
+			count++;
+		}
+		return count;
+	}
 	// Follow Up 2: Get the minimum depth of given binary tree
 	// Time ~ O(N), Space ~ O(height) by DFS
 	// 注意minDepth与maxDepth的区别，当仅有一边子树为空时，minDepth是另一边子树的depth。

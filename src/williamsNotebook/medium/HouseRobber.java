@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common.segmentTree;
+package williamsNotebook.common.segmentandBinaryIndexTree;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com

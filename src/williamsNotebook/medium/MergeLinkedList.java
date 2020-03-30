@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
  * @author yimin Huang

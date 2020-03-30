@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common.segmentTree;
+package williamsNotebook.common.segmentandBinaryIndexTree;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
@@ -95,6 +95,9 @@ public class RangeSumQuery {
 	}
 	
 }
+// Method 2: Binary Index Tree 
+// Complexity is the same as Segment tree
+// https://aaronice.gitbooks.io/lintcode/knowledge/binary-indexed-tree.html
 class NumberArray{
 	private int[] arr, bit;
 	public NumberArray(int nums[]) {
@@ -104,22 +107,30 @@ class NumberArray{
 			update(i, nums[i]);
 		}
 	}
+	// worst case : Time: O(logn)
 	public void update(int index, int val) {
 		int delta = val-arr[index];
 		arr[index] = val;
-		
-		for(int i = index + 1; i <= arr.length; i= lowbit(i)) {
+		// affect elements that are higher than current node
+		// The corresponding index of bit need to add '1'
+		for(int i = index + 1; i <= arr.length; i += lowbit(i)) {
 			bit[i] += delta;
 		}
 	}
+	// worst case: Time: O(logn)
 	public int getPrefixSum(int index) {
 		int sum = 0;
-		for(int i = index + 1; i > 0; i = i-lowbit(i)) {
+		for(int i = index + 1; i > 0; i -= lowbit(i)) {
 			sum += bit[i];
 		}
 		return sum;
 	}
+	// find the next affected index for bit
 	private int lowbit(int x) {
+//		x = 5 = 0b00000101
+//		-x = -5 = 0b11111011
+//		x & (-x) = 0b00000001
+//		x + (x & (-x)) = 0b00000110
 		return x & (-x);
 	}
 	public int getRange(int left, int right) {

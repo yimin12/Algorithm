@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import williamsNotebook.common.UnionFind;
+import williamsNotebook.common.unionFind.UnionFind;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com

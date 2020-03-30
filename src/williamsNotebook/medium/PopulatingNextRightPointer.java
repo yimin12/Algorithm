@@ -59,4 +59,5 @@ public class PopulatingNextRightPointer {
 		connect(dummy.next);
 	}
 
+	// 
 }

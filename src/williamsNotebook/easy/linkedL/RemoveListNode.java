@@ -3,7 +3,7 @@
  */
 package williamsNotebook.easy.linkedL;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
  * @author yimin Huang

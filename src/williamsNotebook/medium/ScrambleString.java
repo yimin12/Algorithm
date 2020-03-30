@@ -3,7 +3,7 @@
  */
 package williamsNotebook.medium;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common;
+package williamsNotebook.common.hash;
 
 import java.util.ArrayList;
 import java.util.HashMap;

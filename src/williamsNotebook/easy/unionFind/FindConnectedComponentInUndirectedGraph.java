@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import williamsNotebook.common.UnionFind;
+import williamsNotebook.common.unionFind.UnionFind;
 
 
 /**
