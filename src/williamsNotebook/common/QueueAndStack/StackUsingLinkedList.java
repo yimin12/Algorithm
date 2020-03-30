@@ -3,11 +3,11 @@
  */
 package williamsNotebook.common.QueueAndStack;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ19ÈÕ ÏÂÎç5:16:00
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½19ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½5:16:00
 * Description:
 * 	Write an algorithm to implement Stack using Linked List.
 * 	Assume that we push at head and pop at head

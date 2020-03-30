@@ -1,11 +1,11 @@
 /**
  * 
  */
-package williamsNotebook.common;
+package williamsNotebook.common.hash;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ26ÈÕ ÉÏÎç10:45:18
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½26ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:45:18
 * Description:
 * 	In data structure Hash, hash function is used to convert a string(or any other type) into an integer smaller 
 * 	than hash size and bigger or equal to zero. The objective of designing a hash function is to "hash" the key 

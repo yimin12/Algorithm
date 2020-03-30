@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.easy.trieTree;
 
 
 /**
@@ -79,5 +79,67 @@ public class WordDictionary {
 			return get(root.next[c], s, index + 1);
 					
 		}
+	}
+}
+// Version 2: 
+class WordDictionaryII{
+	class TrieNode{
+		private TrieNode[] children;
+		private boolean isEnd;
+		public TrieNode() {
+			this.children = new TrieNode[26];
+		}
+		public TrieNode[] getChildren() {
+			return children;
+		}
+		public boolean containsKey(char ch) {
+			return children[ch - 'a'] != null;
+		}
+		public TrieNode get(char ch) {
+			return children[ch - 'a'];
+		}
+		public void put(char ch, TrieNode node) {
+			children[ch - 'a'] = node;
+		}
+		public void setEnd() {
+			isEnd = true;
+		}
+		public boolean isEnd() {
+			return isEnd;
+		}
+	}
+	private TrieNode root;
+	public WordDictionaryII() {
+		root = new TrieNode();
+	}
+	// Add Word into the data structure
+	public void addWord(String word) {
+		TrieNode node = root;
+		for(int i = 0; i < word.length(); i++) {
+			char ch = word.charAt(i);
+			if(node.containsKey(ch)) {
+				node.put(ch, new TrieNode());
+			}
+			node = node.get(ch);
+		}
+		node.setEnd();
+	}
+	public boolean search(String word) {
+		return match(word, 0, root);
+	}
+	private boolean match(String word, int index, TrieNode node) {
+		if(index == word.length()) return node.isEnd;
+		char currentChar = word.charAt(index);
+		if(currentChar == '.') {
+			TrieNode[] children = node.getChildren();
+			for(int i = 0; i < children.length; i++) {
+				if(children[i] != null && match(word, index + 1, node)) {
+					return true;
+				}
+			}
+		} else {
+			return node.get(currentChar) != null && match(word, index + 1, node.get(currentChar));
+		}
+		return false;
 	}
 }

@@ -3,11 +3,11 @@
  */
 package williamsNotebook.easy.linkedL;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ18ÈÕ ÏÂÎç3:30:31
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½18ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:30:31
 * Description:
 * 	You are given two non-empty linked lists representing two non-negative integers. 
 *   The digits are stored in reverse order and each of their nodes contain a single digit. Add 

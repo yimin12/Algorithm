@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

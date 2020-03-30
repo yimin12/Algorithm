@@ -3,11 +3,11 @@
  */
 package williamsNotebook.easy.linkedL;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ18ÈÕ ÏÂÎç11:07:39
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½18ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:07:39
 * Description:
 * 	Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we 
 * 	are talking about the node number and not the value in the nodes.

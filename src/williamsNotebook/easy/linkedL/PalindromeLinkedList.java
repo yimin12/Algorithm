@@ -3,11 +3,11 @@
  */
 package williamsNotebook.easy.linkedL;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ19ÈÕ ÏÂÎç3:45:31
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½19ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:45:31
 * Description:
 * 	Given a singly linked list, determine if it is a palindrome.
 */

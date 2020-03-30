@@ -6,7 +6,7 @@ package williamsNotebook.medium;
 import java.util.ArrayList;
 import java.util.List;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

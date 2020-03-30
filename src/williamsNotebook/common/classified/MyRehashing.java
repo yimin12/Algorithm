@@ -3,11 +3,11 @@
  */
 package williamsNotebook.common.classified;
 
-import williamsNotebook.common.ListNode;
+import williamsNotebook.common.node.ListNode;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ26ÈÕ ÏÂÎç2:01:21
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½26ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:01:21
 * Description:
 * 	The size of the hash table is not determinate at the very beginning. If the total size of keys is too large 
 *   (e.g. size >= capacity / 10), we should double the size of the hash table and rehash every keys. Say you have a 

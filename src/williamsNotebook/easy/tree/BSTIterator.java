@@ -7,7 +7,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common;
+package williamsNotebook.common.unionFind;
 
 import java.util.HashMap;
 import java.util.Set;

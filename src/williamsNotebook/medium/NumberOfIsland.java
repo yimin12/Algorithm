@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import williamsNotebook.common.SimpleUnionFind;
-import williamsNotebook.common.UnionFind;
+import williamsNotebook.common.unionFind.SimpleUnionFind;
+import williamsNotebook.common.unionFind.UnionFind;
 /**
  * @author yimin Huang
  *

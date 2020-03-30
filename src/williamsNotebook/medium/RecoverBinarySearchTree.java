@@ -5,7 +5,8 @@ package williamsNotebook.medium;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import williamsNotebook.common.TreeNode;
+
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang

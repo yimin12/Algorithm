@@ -6,8 +6,8 @@ package williamsNotebook.medium;
 import java.util.HashMap;
 import java.util.Map;
 
-import williamsNotebook.common.ListNode;
-import williamsNotebook.common.TreeNode;
+import williamsNotebook.common.node.ListNode;
+import williamsNotebook.common.node.TreeNode;
 
 /**
  * @author yimin Huang
