@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.easy.trieTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,5 +123,77 @@ public class WordSearch {
 		char[][] board = new char[][] {{'a','b','c','e'},{'s','f','c','s'},{'a','d','e','e'},{'k','f','c','s'}};
 		boolean searchWord = solution.searchWord(board, null);
 		System.out.println(searchWord);
+	}
+}
+// Version 2 of Follow Up 2
+class WordSearchII{
+	class TrieNode{
+		TrieNode[] children = new TrieNode[26];
+		String word; // This field should classfied for your own requirement
+		TrieNode get(char ch) {
+			return children[ch - 'a'];
+		} 
+		void put(char ch, TrieNode node) {
+			children[ch - 'a'] = node;
+		}
+		void setWord(String s) {
+			word = s;
+		}
+		String getWord() {
+			return this.word;
+		}
+	}
+	private TrieNode buildTrie(String[] words) {
+		TrieNode root = new TrieNode();
+		for(String word:words) {
+			TrieNode node = root;
+			char[] charArray = word.toCharArray();
+			for(char ch : charArray) {
+				if(node.get(ch) == null) {
+					node.put(ch, node);
+				}
+				node = node.get(ch);
+			}
+			node.setWord(word);
+		}
+		return root;
+	}
+	public List<String> findWords(char[][] board, String[] words){
+		TrieNode root = buildTrie(words);
+		System.out.println(root.word);
+		List<String> res = new ArrayList<String>();
+		int M = board.length;
+		int N = board[0].length;
+		for(int i = 0; i < M; i++) {
+			for(int j = 0; j < N; j++) {
+				dfs(board, i, j, root, res);
+			}
+		}
+		return res;
+	}
+	// two version of dfs
+	public void dfs(char[][] board, int i, int j, TrieNode node, List<String> res) {
+		// base case:
+		if(i < 0 || j < 0 || i >= board.length || j >= board[0].length || node == null || board[i][j] == '#') {
+			return;
+		}
+		char ch = board[i][j];
+		node = node.get(ch);
+		if(node != null && node.getWord() != null && !res.contains(node.getWord())) {
+			res.add(node.getWord());
+		}
+		int[] dx = new int[]{0,1,0,-1};
+		int[] dy = new int[]{1,0,-1,0};
+		// place marker
+		board[i][j] = '#';
+		for(int k = 0; i < 4; i++) {
+			int nextX = i + dx[k];
+			int nextY = j + dy[k];
+			if(nextX >= 0 && nextY >= 0 && nextX < board.length && nextY < board[0].length && board[nextX][nextY] != '#') {
+				dfs(board, nextX, nextY, node, res);
+			}
+		}
+		// deal the back tracking problem
+		board[i][j] = ch;
 	}
 }
