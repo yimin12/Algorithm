@@ -3,6 +3,7 @@
  */
 package williamsNotebook.common.node;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,10 @@ public class KnaryTreeNode {
 	
 	public int val;
 	public List<KnaryTreeNode> children;
+	public KnaryTreeNode(int _val) {
+		val = _val;
+		children = new ArrayList<KnaryTreeNode>();
+	}
 	public KnaryTreeNode(int _val, List<KnaryTreeNode> _children){
 		val = _val;
 		children = _children;
