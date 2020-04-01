@@ -8,7 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-import williamsNotebook.common.graph.DirectGraph;
+import williamsNotebook.common.node.DirectedGraphNode;
+
 
 /**
  * @author yimin Huang
@@ -25,7 +26,7 @@ public class CourseSchedule {
 
 	// implement it by dfs and topological sort
 	public boolean canFinishTopological(int numCourses, int[][] prerequisites) {
-		DirectGraph G = new DirectGraph(numCourses, prerequisites);
+		DirectedGraphNode G = new DirectedGraphNode(numCourses, prerequisites);
 		DirectedCycle finder = new DirectedCycle(G);
 		return !finder.hasCycle();
 	}
@@ -74,7 +75,7 @@ class DirectedCycle{
 	private boolean[] onStack;
 	private int[] edgeTo;
 	
-	public DirectedCycle(DirectGraph G) {
+	public DirectedCycle(DirectedGraphNode G) {
 		marked = new boolean[G.V];
 		onStack = new boolean[G.V];
 		edgeTo = new int[G.V];
@@ -87,7 +88,7 @@ class DirectedCycle{
 	}
 	
 	// DFS
-	private void dfs(DirectGraph G, int v) {
+	private void dfs(DirectedGraphNode G, int v) {
 		marked[v] = true;
 		onStack[v] = true;
 		for(int w : G.adj[v]) {
