@@ -1,10 +1,9 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.easy.graph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

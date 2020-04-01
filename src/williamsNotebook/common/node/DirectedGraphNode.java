@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.common.graph;
+package williamsNotebook.common.node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
  *
  * Algorithm Class
  */
-public class DirectGraph {
+public class DirectedGraphNode {
 	public int V; // number of vertices
 	public int E; // number of edges
 	public List<Integer>[] adj; // adjacency list
-	public DirectGraph(int n, int[][] edges) {
+	public DirectedGraphNode(int n, int[][] edges) {
 		this.V = n;
 		this.E = edges.length;
 		adj = (List<Integer>[])new List[V];

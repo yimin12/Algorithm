@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-import williamsNotebook.common.graph.GraphNode;
+import williamsNotebook.common.node.UnDirectedGraphNode;
+
 
 /**
  * @author yimin Huang
@@ -93,24 +94,24 @@ public class Clone {
 	
 	// Follow Up 2: Make a deep copy of undirected graph, there could be cycles in the original graph
 	// DFS: Time ~ O(|V| + |E|), Space ~ O(|V| + |E|), with given a list of graph
-	public List<GraphNode> deepCopyGraph(List<GraphNode> graph){
+	public List<UnDirectedGraphNode> deepCopyGraph(List<UnDirectedGraphNode> graph){
 		if(graph == null) {
 			return null;
 		}
-		HashMap<GraphNode,GraphNode> map = new HashMap<GraphNode, GraphNode>();
-		for(GraphNode node:graph) {
+		HashMap<UnDirectedGraphNode,UnDirectedGraphNode> map = new HashMap<UnDirectedGraphNode, UnDirectedGraphNode>();
+		for(UnDirectedGraphNode node:graph) {
 			if(!map.containsKey(node)) {
-				map.put(node, new GraphNode(node.val));
+				map.put(node, new UnDirectedGraphNode(node.val));
 				DFS(node, map);
 			}
 		}
-		return new ArrayList<GraphNode>(map.values());
+		return new ArrayList<UnDirectedGraphNode>(map.values());
 	}
-	private void DFS(GraphNode seed, HashMap<GraphNode, GraphNode> map) {
-		GraphNode copy = map.get(seed);
-		for(GraphNode nei: seed.neighbors) {
+	private void DFS(UnDirectedGraphNode seed, HashMap<UnDirectedGraphNode, UnDirectedGraphNode> map) {
+		UnDirectedGraphNode copy = map.get(seed);
+		for(UnDirectedGraphNode nei: seed.neighbors) {
 			if(!map.containsKey(nei)) {
-				map.put(nei, new GraphNode(nei.val));
+				map.put(nei, new UnDirectedGraphNode(nei.val));
 				DFS(nei, map);
 			}
 			copy.neighbors.add(map.get(nei));
@@ -118,35 +119,35 @@ public class Clone {
 	}
 	// If given a node and traverse it by DFS
 	// DFS: Time ~ O(|V| + |E|), Space ~ O(|V| + |E|)
-	private Map<GraphNode, GraphNode> map = new HashMap<GraphNode, GraphNode>();
-	public GraphNode cloneGraph(GraphNode node) {
+	private Map<UnDirectedGraphNode, UnDirectedGraphNode> map = new HashMap<UnDirectedGraphNode, UnDirectedGraphNode>();
+	public UnDirectedGraphNode cloneGraph(UnDirectedGraphNode node) {
 		if(node == null) return null;
 		return dfsClone(node);
 	}
-	private GraphNode dfsClone(GraphNode node) {
+	private UnDirectedGraphNode dfsClone(UnDirectedGraphNode node) {
 		if(map.containsKey(node)) return map.get(node);
-		GraphNode copy = new GraphNode(node.val);
+		UnDirectedGraphNode copy = new UnDirectedGraphNode(node.val);
 		map.put(node, copy);
-		for(GraphNode nei:node.neighbors) {
+		for(UnDirectedGraphNode nei:node.neighbors) {
 			copy.neighbors.add(nei);
 		}
 		return copy;
 	}
 	// BFS: Time ~ O(|V| + |E|), Space ~ O(|V| + |E|)
-	public GraphNode cloneGraphBFS(GraphNode node) {
+	public UnDirectedGraphNode cloneGraphBFS(UnDirectedGraphNode node) {
 		if(node == null) return null;
-		GraphNode copy = new GraphNode(node.val);
-		Map<GraphNode, GraphNode> map = new HashMap<GraphNode, GraphNode>();
+		UnDirectedGraphNode copy = new UnDirectedGraphNode(node.val);
+		Map<UnDirectedGraphNode, UnDirectedGraphNode> map = new HashMap<UnDirectedGraphNode, UnDirectedGraphNode>();
 		map.put(node, copy);
-		Queue<GraphNode> q = new LinkedList<GraphNode>();
+		Queue<UnDirectedGraphNode> q = new LinkedList<UnDirectedGraphNode>();
 		q.add(node);
 		while(!q.isEmpty()) {
-			GraphNode v = q.poll();
-			for(GraphNode nei: v.neighbors) {
+			UnDirectedGraphNode v = q.poll();
+			for(UnDirectedGraphNode nei: v.neighbors) {
 				if(map.containsKey(nei)) {
 					map.get(v).neighbors.add(map.get(nei));
 				} else {
-					GraphNode wCopy = new GraphNode(nei.val);
+					UnDirectedGraphNode wCopy = new UnDirectedGraphNode(nei.val);
 					map.get(v).neighbors.add(wCopy);
 					map.put(nei, wCopy);
 					q.add(nei);

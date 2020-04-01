@@ -61,7 +61,7 @@ public class PathSum {
 	// Follow Up 3: You are given a binary tree in which each node contains an integer value.
 	// Find the number of paths that sum to a given value.
 	// The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
-	// Use HashMap<Integer, frequency>
+	// Use HashMap<Integer, frequency>, A good way to use prefix sum
 	public int pathSumII(TreeNode root, int sum) {
 		HashMap<Integer, Integer> preSum = new HashMap<Integer, Integer>();
 		preSum.put(0, 1);
