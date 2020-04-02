@@ -6,11 +6,11 @@ package williamsNotebook.easy.abstraction;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import BinaryTreeAndBST.isBST;
+import williamsNotebook.easy.tree.laioffer.isBST;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ23ÈÕ ÏÂÎç4:38:10
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½23ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½4:38:10
 * Description:
 * 	You are given am x n2D grid initialized with these three possible values.
 * 	-1- A wall or an obstacle.
