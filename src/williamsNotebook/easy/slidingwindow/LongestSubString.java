@@ -9,13 +9,14 @@ import java.util.Arrays;
  * @author yimin Huang
  *
  *	Given a string, find the length of the longest substring T that contains at most 2 distinct characters
- *	For example, Given s = “eceba�?,
+ *	For example, Given s = “eceba�?,
  *	T is "ece" which its length is 3.
  *
  * Algorithm Class
  */
 public class LongestSubString {
 
+	// Follow Up 1: at most 2 distinct characters
 	// Sliding window by using three pointers
 	public int lengthOfTwoDistinct(String s) {
 		if(s == null || s.length() == 0) return 0;
@@ -32,7 +33,7 @@ public class LongestSubString {
 		return Math.max(max,  n - start);
 	}
 	
-	// Follow Up 1, k distinct character.
+	// Follow Up 2, k distinct character.
 	// Two Pointers and HashTable Time: O(2N) and Extra Space O:(1)
 	public int lengthOfKDistinctSubString(String s, int k) {
 		int[] count = new int[256];
@@ -50,7 +51,7 @@ public class LongestSubString {
 		return maxLen;
 	}
 	
-	// Follow Up 2: All Distinct without repeating
+	// Follow Up 3: All Distinct without repeating
 	// Method 1: Two pointer and HashTable , Time: O(2N) and Extra Space: O(1)
 	public int lengthOfLongest(String s) {
 		boolean[] exist= new boolean[256];

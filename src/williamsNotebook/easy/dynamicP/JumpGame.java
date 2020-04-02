@@ -3,6 +3,9 @@
  */
 package williamsNotebook.easy.dynamicP;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import williamsNotebook.easy.tree.maxPathSum;
 
 /**
@@ -126,5 +129,39 @@ public class JumpGame {
 			next = Math.max(next, i + array[i]);
 		}
 		return jump;
+	}
+	// Solution 3: BFS
+	public int minJump(int[] array) {
+		if(array == null || array.length == 0) {
+			return -1;
+		}
+		int n = array.length;
+		boolean visited[] = new boolean[n];
+		Queue<Integer> queue = new LinkedList<Integer>();
+		int jump = 0;
+		// store the index
+		queue.offer(0);
+		visited[0] = true;
+		while(!queue.isEmpty()) {
+			int size = queue.size();
+			while(size-- > 0) {
+				int i = queue.poll();
+				if(i == n - 1) {
+					return jump;
+				}
+				for(int j = array[i]; j >= 0; j--) {
+					int newIdx = j + i;
+					if(newIdx >= n - 1) {
+						return jump + 1;
+					}
+					if(newIdx < n && !visited[newIdx]) {
+						visited[newIdx] = true;
+						queue.offer(newIdx);
+					}
+				}
+			}
+			jump++;
+		}
+		return -1;
 	}
 }
