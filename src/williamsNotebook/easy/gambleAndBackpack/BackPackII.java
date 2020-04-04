@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.easy.greedyAndBackpack;
+package williamsNotebook.easy.gambleAndBackpack;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
@@ -45,4 +45,12 @@ public class BackPackII {
         }
         return dp[m];
     }
+	
+	public static void main(String[] args) {
+		BackPackII solution = new BackPackII();
+		int[] W = new int[] {2, 3, 5, 7};
+		int[] V = new int[] {1, 5, 2, 4};
+		int backPack = solution.backPackII(10, W, V);
+		System.out.println(backPack);
+	}
 }

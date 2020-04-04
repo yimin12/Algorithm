@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.easy.greedyAndBackpack;
+package williamsNotebook.easy.gambleAndBackpack;
 
 import williamsNotebook.easy.tree.maxPathSum;
 
