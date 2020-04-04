@@ -1,13 +1,13 @@
 /**
  * 
  */
-package williamsNotebook.easy.array;
+package williamsNotebook.easy.abstraction;
 
 import java.util.Arrays;
 
 /**
 * @author yiminH-mail:hymlaucs@gmail.com
-* @version Create Time£º2020Äê3ÔÂ19ÈÕ ÏÂÎç11:13:35
+* @version Create Timeï¿½ï¿½2020ï¿½ï¿½3ï¿½ï¿½19ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:13:35
 * Description:
 * 	Now, you are given positions of houses and heaters on a horizontal line,
 * 	find out minimum radius of heaters so that all houses could be covered by those heaters.
