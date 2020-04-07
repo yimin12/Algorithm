@@ -1,7 +1,7 @@
 /**
  * 
  */
-package williamsNotebook.medium;
+package williamsNotebook.easy.dynamicP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,28 @@ public class WordBreak {
 		}
 		return dp[s.length()];
 	}
-	
+	// Version 2: Optimize with Max Length constraint
+	private int getMaxLength(List<String> wordDict) {
+		int max = 0;
+		for(String word : wordDict) {
+			if(word.length() > max) {
+				max = word.length();
+			}
+		}
+		return max;
+	}
+	public boolean wordBreakI(String s, List<String> wordDict) {
+		boolean[] dp = new boolean[s.length() + 1];
+		dp[0] = true;
+		int maxLen = getMaxLength(wordDict);
+		for(int i = 1; i <= s.length(); i++) {
+			for(int j = i - 1; j >= 0 && i - j <= maxLen; j--) {
+				dp[i] = dp[j] && wordDict.contains(s.subSequence(j, i));
+				if(dp[i]) break;
+			}
+		}
+		return dp[s.length()];
+	}
 	// Follow Up 2: Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word
 	// Return all such possible sentences. For example, given s = "catsanddog", dict = ["cat", "cats", "and", "sand", "dog"].
 	// A solution is ["cats and dog", "cat sand dog"].

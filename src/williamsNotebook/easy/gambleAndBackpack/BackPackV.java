@@ -13,6 +13,24 @@ package williamsNotebook.easy.gambleAndBackpack;
 * 	Given candidate items[1,2,3,3,7]and target 7,
 * 	A solution set is: 
 * 		[7], [1, 3, 3]
+* 
+* When you compare it with BackPack 4, (can use ultimate times for each coins or can use at most once for each point)
+* The key difference in the induction rule:
+* 	1. When you can use ultimate times for each coin
+* 		dp[i][j] += dp[i-1][j] + dp[i][j-A[i-1]] <- Key Difference
+* 	2. When you can use at most once for each coin
+* 		dp[i][j] += dp[i-1][j] + dp[i-1][j-A[i-1]]; <- Key Difference
+* Small trick for using rolling array
+* 	1. when you can use ultimate times for each coins (start from nums[i-1] to target)
+* 		 for (int coin : coins)      
+	        for (int i = coin; i <= s; i++)         
+	            dp[i] += dp[i - coin];                                  
+	     return dp[s];
+	2. when you can use at most once for each coins (start from target to nums[i-1]) reverse direction compare to case 1
+		 for (int coin : coins)
+	        for (int i = s; i >= coin; i--)
+	            dp[i] += dp[i - coin];              
+	     return dp[s]; 
 */
 public class BackPackV {
 

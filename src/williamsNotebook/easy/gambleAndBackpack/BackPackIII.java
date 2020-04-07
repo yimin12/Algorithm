@@ -9,7 +9,7 @@ package williamsNotebook.easy.gambleAndBackpack;
 * Description:
 * 	Givenn_kind of items with size Ai and value Vi(each item has an infinite number available) and a backpack with size_m. What's the maximum value can you put into the backpack?
 * 	You cannot divide item into small pieces and the total size of items you choose should smaller or equal to m.
-* 	Given 4 items with size[2, 3, 5, 7]and value[1, 5, 2, 4], and a backpack with size10. The maximum value is15.
+* 	Given 4 items with size[2, 3, 5, 7]and value[1, 5, 2, 4], and a backpack with size 10. The maximum value is 15.
 */
 public class BackPackIII {
 
