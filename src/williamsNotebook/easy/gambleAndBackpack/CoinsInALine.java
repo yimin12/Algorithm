@@ -64,4 +64,9 @@ public class CoinsInALine {
 		}
 		return true;
 	}
+	public static void main(String[] args) {
+		CoinsInALine solution = new CoinsInALine();
+		boolean firstWillWin = solution.firstWillWin(9);
+		System.out.println(firstWillWin);
+	}
 }
