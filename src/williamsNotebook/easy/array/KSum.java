@@ -19,6 +19,8 @@ import java.util.List;
 
 public class KSum {
 
+	//  Method 1: Divide and Conquer
+	// Time: O(n*n-1*n-2*...n-k) Space: O(kn)
 	public List<List<Integer>> fourSum(int[] nums, int target){
 		if(nums == null || nums.length == 0) return new ArrayList<List<Integer>>();
 		Arrays.sort(nums);
@@ -61,5 +63,33 @@ public class KSum {
 			}
 		}
 		return res;
+	}
+	// Dynamic Programming
+//	State:
+//		• f[i][j][t]前i个数取j个数出来能否和为t
+//		 Function:
+//		• f[i][j][t] = f[i – 1][j – 1][t – a[i-1]] + f[i – 1][j][t]
+//		Intialization
+//		• f[i][0][0] = 1
+//		Answer
+//		• f[n][k][target]
+	public int kSum(int[] A, int k, int target) {
+		int n = A.length;
+		int[][][] dp = new int[n+1][k+1][target+1];
+		for(int i = 0; i <= n; i++) {
+			dp[i][0][0] = 1;
+		}
+		for(int i = 1; i <= n; i++) {
+			for(int j = 1; j <= k; j++) {
+				for(int t = 1; t<= target; t++) {
+					dp[i][j][t] = 0;
+					if(t >= A[i-1]) {
+						dp[i][j][t] = dp[i-1][j-1][target - A[i-1]];
+					}
+					dp[i][j][t] += dp[i-1][j][t];
+				}
+			}
+		}
+		return dp[n][k][target];
 	}
 }
