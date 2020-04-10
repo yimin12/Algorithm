@@ -69,11 +69,13 @@ public class KSum {
 //		• f[i][j][t]前i个数取j个数出来能否和为t
 //		 Function:
 //		• f[i][j][t] = f[i – 1][j – 1][t – a[i-1]] + f[i – 1][j][t]
+//		划分出来的子问题是： 在前i-1个数中，选用a[i-1]最为答案之一，找j-1的和为t-a[i-1]的个数， 或者在前i-1个数中已经完成了jsum的操作的个数。
 //		Intialization
 //		• f[i][0][0] = 1
 //		Answer
 //		• f[n][k][target]
 	public int kSum(int[] A, int k, int target) {
+		// We assume that target is larger than 0, so that we can use the idea in back pack
 		int n = A.length;
 		int[][][] dp = new int[n+1][k+1][target+1];
 		for(int i = 0; i <= n; i++) {
@@ -91,5 +93,62 @@ public class KSum {
 			}
 		}
 		return dp[n][k][target];
+	}
+	// Follow Up 1: Print out all solution while running dynamic programming
+	int[] res;
+	int total; // target
+	int[] A;
+	int K; // k sum
+	int [][][] f;
+	// recursively print the answer
+	void printAnswer(int i, int j, int k) {
+		// base case
+		if(j == 0) {
+			for(int h = 0; h < K; h++) {
+				System.out.println(res[h]);
+				if(h == K - 1) System.out.println(" = " + total);
+				else System.out.print(" + ");
+			}
+			return;
+		}
+		// Induction rule
+		if(f[i-1][j][k] > 0) {
+			printAnswer(i-1, j, k);
+		}
+		if(j > 0 && k >= A[i-1] && f[i-1][j-1][k-A[i-1]] > 0) {
+			res[j-1] = A[i-1];
+			printAnswer(i-1, j-1, k-A[i-1]);
+		}
+	}
+	// filling the form by using dp
+	public int kSumPrint(int[] nums, int kk, int target) {
+		K = kk;
+		A = nums;
+		total = target;
+		int n = A.length;
+		res = new int[K];
+		f = new int[n+1][K+1][total+1];
+		int i, j, k;
+		// base case
+		for(j = 0; j <= K; j++) {
+			for(k = 0; k <= total; k++) {
+				f[0][j][k] = 0;
+			}
+		}
+		f[0][0][0] = 1;
+		for(i = 1; i <= n; i++) {
+			for(j = 0; j <= K; j++) {
+				for(k = 0; k <= total; k++) {
+					// Not using A[i-1] as result
+					f[i][j][k] = f[i-1][j][k];
+					// Use A[i-1] as result
+					if(j > 0 && k >= A[i-1]) {
+						f[i][j][k] = f[i-1][j-1][k-A[i-1]];
+					}
+				}
+			}
+		}
+		printAnswer(n, K, total);
+		return f[n][K][total];
 	}
 }
