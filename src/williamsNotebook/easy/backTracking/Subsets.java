@@ -48,14 +48,17 @@ public class Subsets {
 		if(set == null || set.length() == 0) return result;
 		char[] array = set.toCharArray();
 		StringBuilder sb = new StringBuilder();
-		horizontaldfs(array, sb, 0, result);
+		int[] count = {0};
+		horizontaldfs(array, sb, 0, result, count);
+		System.out.println(count[0]);
 		return result;
 	}
-	private void horizontaldfs(char[] array, StringBuilder sb, int index, List<String> result) {
+	private void horizontaldfs(char[] array, StringBuilder sb, int index, List<String> result, int[] count) {
 		result.add(sb.toString());
 		for(int i = index; i < array.length; i++) {
 			sb.append(array[i]);
-			horizontaldfs(array, sb, i+1, result);
+			count[0]++;
+			horizontaldfs(array, sb, i+1, result, count);
 			sb.deleteCharAt(sb.length() - 1);
 		}
 	}
@@ -166,7 +169,7 @@ public class Subsets {
 	}
 	public static void main(String[] args) {
 		Subsets solution = new Subsets();
-		List<String> subSetsI = solution.subSetII("123");
+		List<String> subSetsI = solution.subSetII("1234");
 		System.out.println(subSetsI);
 		
 		List<String> subSetsWithDup = solution.subSetsWithDupII("122");
