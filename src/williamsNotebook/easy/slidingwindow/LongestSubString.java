@@ -4,6 +4,8 @@
 package williamsNotebook.easy.slidingwindow;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author yimin Huang
@@ -78,5 +80,47 @@ public class LongestSubString {
 		}
 		return maxLen;
 	}
-	
+	// Follow Up 4:
+	public int longestSubstring(String s, int k) {
+        // write your code here
+        if(s == null || s.length() < k) {
+            return 0;
+        }
+        
+        int[] cntS = new int[26];
+        
+        char[] ca = s.toCharArray();
+        int len = s.length();
+        
+        for(int i = 0; i < len; i++) {
+            cntS[ca[i] - 'a']++;
+        }
+        Set<Character> set = new HashSet<>();
+        for(int i = 0; i < 26; i++) {
+            if(cntS[i] < k && cntS[i] > 0) {
+                set.add((char)('a' + i));
+            }
+        }
+        if(set.size() ==0) {
+            return s.length();
+        }
+        int l = 0; 
+        int r = 0;
+        
+        int maxLen = 0;
+        while(l < len && r < len) {
+            while(r < len && !set.contains(ca[r])) {
+                r++;
+            }
+            
+            maxLen = Math.max(maxLen, longestSubstring(s.substring(l, r), k));
+            if(r == len) {
+                break;
+            }
+            r++;
+            l = r;
+        }
+        
+        return maxLen;
+    }
 }

@@ -1,0 +1,7 @@
+Introduction:
+	Java concurrency is a term that covers multithreading, concurrency and parallelism on the java platform. That includes the Java concurrency tools, problems and solutions.
+This java concurrency tutorial covers the core concepts of multithreading, concurrency constructs, concurrency problems, costs, benefits related to multithreading in Java.
+
+What is Multithreading?
+	Multithreading means that you have multiple threads of execution inside the same application. A thread is like a separate CPU executing you application. Thus, a multithreaded 
+application is like an application that has multiple CPUs executing different parts of the code at the same time.

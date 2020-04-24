@@ -1,0 +1,43 @@
+1. Design Principles:
+	1.1 Program to an interface, not an implementation. (First Design Principle [GoF, p18]):
+	1.2 Cleanly separate interface and implementation.
+	1.3 Favor object composition over class inheritance.
+2. Overview of Design pattern:
+	2.1 Changing Behavior - Making a system independent of changing requirement.
+		2.1.1. Runtime-Time Flexibility via Object Composition
+		STRATEGY : Using different algorithms. Selecting and changing which algorithm to use dynamically.
+			Adding new algorithms and changing exist ones independently.
+		STATE : Changing the behavior of an object when its internal state changes. Adding new states and changing
+			the behavior of existing ones independently.
+		DECORATOR : Adding responsibilities to an object dynamically. Extending the functionality of an object
+			dynamically.
+		PROXY : Controlling the way an object is accessed. Providing additional functionality when accessing an object
+		2.1.2. Compile-Time Flexibility via Class Inheritance
+		TEMPLATE METHOD : Defining a behavior, so that subclasses can change certain parts of the behavior without changing
+			the behavior's structure.
+	2.2 Changing Object Creation - Making a system independent of how its objects are created
+		2.2.1. Run-Time Flexibility via Object Composition.
+		ABSTRACT FACTORY : Creating different families of objects. Selecting and changing which family of object to create dynamically.
+		BUILDER : Creating different representations of a complex object. Selecting and changing which representation to create dynamically.
+		PROTOTYPE : Creating new objects by cloning prototype objects. Selecting and changing prototype objects dynamically.
+		2.2.2. FACTORY METHOD : Create an object so that subclasses can change the way the object is created.
+		SINGLETON: Ensuring that a class has only one instance. Providing global access to the sole instance of a class.
+	2.3 Object Structures - Working with complex object structures efficiency
+		COMPOSITE : Representing part-whole hierarchies as tree structures. Treating all objects in a part-whole hierarchy uniformly.
+		ITERATOR : Accessing the elements of an object structure without exposing its underlying representation.
+		VISITOR : Defining new operations for classes of an object structure independently from (without changing) the classes.
+		FLYWEIGHT : Supporting large numbers of find-grained objects efficiently.
+	2.4 Object Collaboration - Avoiding tight coupling between interacting objects.
+		OBSERVER - Defining a one-to-many dependency between objects without making the objects tightly coupled. Notifying an open-ended number
+			of dependent objects.
+		MEDIATOR - Avoiding tight coupling between a set of interacting objects. Changing the interaction behavior independently.
+		CHAINOF OF PERSONSIBILITY - Avoiding tight coupling the sender of request to its receiver. Determining the receiver (handler) of request dynamically.
+		COMMAND - Avoiding tight coupling the sender of request to its receiver. Configuring the sender of a request with a request. Queuing and logging requests.
+	2.5 Changing Interfaces Independently 
+		ADAPTOR - Providing a different interface to an object. Letting objects work together that have incompatible interfaces.
+		BRIDGE - Decoupling an abstraction from its implementation. Letting an abstraction and its implementation vary independently.
+		FACADE - Providing a simple interface to a complex subsystem. Making a complex subsystem easier to use.
+	2.6 Storing and Restoring Object State
+		MEMENTO - Storing and restoring an object's internal state without violating encapsulation.
+	2.7 Interpreter / Domain Specific Languages
+		INTERPRETOR - Interpreting sentences in a simple language.	 
