@@ -30,7 +30,7 @@ public class MedianTracker {
 //		We care about the smallest number of the larger half and largest number of the samller half
 //		So for the smaller half we use a max heap and for the larger half we use a min heap.
 		largerHalf = new PriorityQueue<Integer>();
-		smallerHalf = new PriorityQueue<Integer>(11, Collections.reverseOrder());
+		smallerHalf = new PriorityQueue<Integer>(11, (a,b)->b-a);
 	}
 	
 	public void read(int value) {

@@ -67,8 +67,11 @@ public class CombinationsOfCoins {
 		for(int i = 0; i <= max; i++) {
 			cur.add(i);
 //			remember to modify the remaining cents for the next level
-			helper(target - i * coins[index], coins, index + 1, result, cur);
+			helper(target - i * coins[index], coins, i + 1, result, cur);
 			cur.remove(cur.size() - 1);
 		}
+	}
+	public static void main(String[] args) {
+		
 	}
 }

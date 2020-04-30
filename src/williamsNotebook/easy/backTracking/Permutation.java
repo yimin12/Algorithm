@@ -147,10 +147,11 @@ public class Permutation {
 		List<String> res = new ArrayList<String>();
 		if(array == null) return res;
 		StringBuilder sb = new StringBuilder();
-		dfsDupSwap(array, 0, res, sb);
+		int[] count = {0};
+		dfsDupSwap(array, 0, res, sb, count);
 		return res;
 	}
-	private void dfsDupSwap(int[] array, int index, List<String> res, StringBuilder sb) {
+	private void dfsDupSwap(int[] array, int index, List<String> res, StringBuilder sb, int[] count) {
 		// base case
 		if(index == array.length) {
 			for(int i : array) sb.append(i);
@@ -162,9 +163,12 @@ public class Permutation {
 		// recursion rule
 		for(int i = index; i < array.length; i++) {
 			if(set.add(array[i])) {
+				count[0]++;
 				swap(array, i, index);
-				dfsDupSwap(array, index + 1, res, sb);
+				System.out.println("set: " + set.toString() + " ; " + "level: " + count[0] + " : " + "current array: " + Arrays.toString(array));
+				dfsDupSwap(array, index + 1, res, sb, count);
 				swap(array, i, index);
+				count[0]--;
 			}
 		}
 	}
@@ -198,13 +202,14 @@ public class Permutation {
 	
 	public static void main(String[] args) {
 		Permutation solution = new Permutation();
-		int[] array = new int[] {1,1,2,2};
-		List<String> permutation = solution.permutation(array);
-		List<String> permutationsWithOrder = solution.permutationsWithOrder(array);
-		List<String> permutationsWithOrderDuplicate = solution.permutationWithDuplicate(array);
+		int[] array = new int[] {1,2,2};
+//		List<String> permutation = solution.permutation(array);
+//		List<String> permutationsWithOrder = solution.permutationsWithOrder(array);
+//		List<String> permutationsWithOrderDuplicate = solution.permutationWithDuplicate(array);
 		List<String> permutationDuplicateSwap = solution.permutationDuplicateSwap(array);
 		
-		System.out.println(permutationDuplicateSwap.toString());
-		System.out.println(permutationsWithOrderDuplicate.toString());
+		System.out.println("final result: "+permutationDuplicateSwap.toString());
+//		System.out.println(permutationsWithOrderDuplicate.toString());
+		
 	}
 }

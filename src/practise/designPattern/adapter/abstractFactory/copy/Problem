@@ -1,0 +1,22 @@
+Q: How can a class be independent of how the objects it requires are created?
+Q: How can different families of related or dependent objects be created?
+
+The Abstract Factory design pattern provides a solution:
+	Encapsulate creating a family of objects in a separate factory object.
+	A class delegates object creation to a factory object
+	instead of instantiating concrete classes directly.
+	
+Background Information
+• "Not only must we avoid making explicit constructor calls; we must also be able to replace
+an entire widget set easily. We can achieve both by abstracting the process of object
+creation." [GoF, p48]
+• Abstract Factory is often referred to as Factory or Factory Object because all design patterns
+do some kind of abstraction. The Strategy pattern, for example, abstracts and encapsulates an
+algorithm. "Abstraction and encapsulation are complementary concepts [...] For abstraction to
+work, implementations must be encapsulated." [GBooch07, p51]
+• For simple applications that do not need exchangeable families of objects, a common
+implementation of the Abstract Factory pattern is just a concrete factory class that acts as both
+the interface and implementation (see Implementation).
+"Also note that MazeFactory is not an abstract class; thus it acts as both the AbstractFactory
+and the ConcreteFactory. This is another common implementation for simple applications of
+the Abstract Factory pattern." [GoF, p94]
